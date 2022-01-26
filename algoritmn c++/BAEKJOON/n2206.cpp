@@ -40,7 +40,7 @@ void bfs(){
                         temp[new_y][new_x][0] = temp[y][x][0]+1 ;
                         q.push(make_pair(make_pair(new_x,new_y),0));
                     }else if(map[new_y][new_x]==1 &&temp[new_y][new_x][1] >
-                             temp[y][x][1]+1){
+                             temp[y][x][0]+1){
                         temp[new_y][new_x][1] = temp[y][x][0]+1;
                         q.push(make_pair(make_pair(new_x,new_y),1));
                     }
@@ -61,13 +61,11 @@ int main(){
             temp[i][j][1]=inf;
         }
     }
-    temp[0][0][0]=0;
-    temp[0][0][1]=0;
+    temp[0][0][0]=1;
+    temp[0][0][1]=1;
     bfs();
     answer = min(temp[n-1][m-1][0],temp[n-1][m-1][1]);
-    if(answer==inf)cout<<-1;
-    else{
-        cout<<answer+1;
-    }
+    if(answer==inf)answer=-1;
+    cout<<answer;
     return 0;
 }
